@@ -22,21 +22,11 @@
 void demo_basic(std::unique_ptr<Model> & model_ptr) {
     Gnuplot gp;
 
-    int nx = model_ptr->get_lattice().get_nx();
-    int ny = model_ptr->get_lattice().get_ny();
-    vec3 a1 = model_ptr->get_lattice().get_a1();
-    vec3 a2 = model_ptr->get_lattice().get_a2();
+    int nx = model_ptr->get_lattice()->get_nx();
+    int ny = model_ptr->get_lattice()->get_ny();
+    vec3 a1 = model_ptr->get_lattice()->get_a1();
+    vec3 a2 = model_ptr->get_lattice()->get_a2();
 //    vec3 xrange =
-
-    gp << "set xr [-0.5:" + std::to_string(nx - 0.5) + "]\n";
-    gp << "set yr [-0.5:" + std::to_string(ny - 0.5) + "]\n";
-    gp << "unset tics\n";
-    gp << "unset border\n";
-    gp << "set size sq\n";
-    gp << "set output 'ising.png'\n";
-    gp << "set style line 1 lt 1 lc rgb \"black\" lw 2\n";
-    gp << "set style fill solid 2.0 noborder\n";
-    gp << "set title \"Ising Model: " << nx << " x " << ny << " Unit Cells\"\n";
 
     for(int i = 0; i < ny; i++) {
         vec3 left_point, right_point;
@@ -71,6 +61,18 @@ void demo_basic(std::unique_ptr<Model> & model_ptr) {
 //        std::to_string(x_coord) + "," + std::to_string(y_coord) +
 //        " size first 0.40 fc rgb " + col + " front\n";
 //    }
+
+    std::cout << "The y coordinate is: " << std::to_string((nx - 1)*a1[1] - 0.5) << std::endl;
+    std::cout << "set yr [-0.5:" + std::to_string((nx - 1)*a1[1] - 0.5) + "]\n";
+    gp << "set xr [" + std::to_string((ny - 1)*a2[0] - 0.5) + ":" + std::to_string((nx-1)*a1[0] - 0.5) + "]\n";
+    gp << "set yr [-0.5:" + std::to_string((ny - 1)*a2[1] - 0.5) + "]\n";
+    gp << "unset tics\n";
+    gp << "unset border\n";
+    gp << "set size sq\n";
+    gp << "set output 'ising.png'\n";
+    gp << "set style line 1 lt 1 lc rgb \"black\" lw 2\n";
+    gp << "set style fill solid 2.0 noborder\n";
+    gp << "set title \"Ising Model: " << nx << " x " << ny << " Unit Cells\"\n";
 
     gp << "set sample 5000\n";
     gp << "p -4 ls 1 notitle\n";

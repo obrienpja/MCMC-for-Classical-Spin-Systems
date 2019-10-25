@@ -59,17 +59,17 @@ int main(int argc, char **argv) {
         temperatures_list.emplace_back(max_simulation_temperature - (max_simulation_temperature - min_simulation_temperature) * i / number_of_temperature_steps);
     }
 
-
-    for (auto &temperature: temperatures_list) {
-        alg->simulate(n_itr, is, temperature, energy_list);
-    }
+//
+//    for (auto &temperature: temperatures_list) {
+//        alg->simulate(n_itr, is, temperature, energy_list);
+//    }
 
     std::cout << "The average energy list is: " << std::endl;
+//
+//    for(auto m:energy_list)
+//        std::cout << m << std::endl;
 
-    for(auto m:energy_list)
-        std::cout << m << std::endl;
-
-    plot_average_energy(temperatures_list, energy_list, "average_energy.png", max_simulation_temperature);
+//    plot_average_energy(temperatures_list, energy_list, "average_energy.png", max_simulation_temperature);
 
     demo_basic(is);
 
