@@ -13,6 +13,7 @@
 #include "Model/Ising.hpp"
 #include "Plot/MagneticStatePlot.cpp"
 #include "Plot/AverageEnergyPlot.cpp"
+#include "Utilities/Output.hpp"
 
 using namespace arma;
 
@@ -51,7 +52,7 @@ int main(int argc, char **argv) {
     std::vector<double> acceptance_list;
     double min_simulation_temperature = 0.05;
     double max_simulation_temperature = 1.00;
-    int number_of_temperature_steps = 31;
+    int number_of_temperature_steps = 1;
 
     for(int i = 0; i < number_of_temperature_steps + 1; i++)
     {
@@ -67,9 +68,17 @@ int main(int argc, char **argv) {
     for(auto m:energy_list)
         std::cout << m << std::endl;
 
-    plot_average_energy(temperatures_list, energy_list, "average_energy.png", max_simulation_temperature);
+    Output out(n_x_in, n_y_in, "Ising");
+    out.createOutputDirectory();
 
-    demo_basic(is, "spin_state.png");
+    std::cout << (out.fullDirectoryString + "/average_energy.png") << std::endl;
+
+    plot_average_energy(temperatures_list, energy_list, \
+    (out.fullDirectoryString + "/average_energy.png"), max_simulation_temperature);
+
+    demo_basic(is, (out.fullDirectoryString + "/spin_state.png"));
+
+
 
     return 0;
 }

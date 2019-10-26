@@ -19,6 +19,7 @@ add_executable(
         Model/Model.hpp
         Model/Ising.hpp
         Model/Ising.cpp
+        Utilities/Output.hpp
 #        Plot/MagneticStatePlot.cpp
 #        Plot/AverageEnergyPlot.cpp
 )
