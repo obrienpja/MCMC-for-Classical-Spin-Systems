@@ -35,8 +35,6 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 
 //    model_ptr->create_random_initial_spin_configuration(mt2, dist2);
 
-//    demo_basic(model_ptr);
-
     std::cout << "The energy of the initial spin configuration is: " << std::endl;
     double initial_energy = model_ptr->energy();
     std::cout << initial_energy << std::endl << std::endl;
@@ -67,8 +65,6 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
         }
     }
 
-//    demo_basic(model_ptr);
-
     std::cout << "The energy of the final spin configuration is: " << std::endl;
     std::cout << model_ptr->energy() << std::endl << std::endl;
 //    output << output_json.dump();
@@ -84,8 +80,5 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
     /model_ptr->get_system_size());
 
     std::cout << "The acceptance rate is: " << static_cast<double> (accepted_counter)/nitr << std::endl;
-
-
-//    plot_average_energy(accepted_list, acceptance_list, "acceptance_plot.png");
 }
 
