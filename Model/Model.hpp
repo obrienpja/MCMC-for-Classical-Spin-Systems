@@ -4,8 +4,9 @@
 
 #include <armadillo>
 #include <fstream>
-#include <bits/unique_ptr.h>
+//#include <bits/shared_ptr.h>
 #include "../Lattice/Square.hpp"
+#include "../Lattice/Triangular.hpp"
 
 using namespace arma;
 
@@ -14,7 +15,7 @@ using namespace arma;
 class Model {
 private:
     int system_size{};
-    Square lat;
+    Lattice & lat;
 public:
     virtual double energy() = 0;
 
@@ -22,7 +23,7 @@ public:
 
     virtual Spin new_spin(std::mt19937 & a, std::uniform_int_distribution<int> & b) = 0;
 
-    Square & get_lattice(){return lat;};
+    Lattice & get_lattice(){return lat;};
 
     void create_random_initial_spin_configuration(std::mt19937 & a, std::uniform_int_distribution<int> & b){
         for (auto &m: lat.get_lattice()) {
@@ -38,7 +39,7 @@ public:
 
     int get_system_size(){return system_size;};
 
-    void set_lattice(Square & sq){lat = sq;};
+    void set_lattice(Lattice & sq){lat = sq;};
 
     virtual void update_spin_configuration(int ind, Spin & n_spin) = 0;
 
@@ -46,7 +47,7 @@ public:
 
     virtual void create_ferromagnetic_spin_configuration() = 0;
 
-    Model(Square & l, int sys){set_lattice(l); set_system_size(sys);};
+    Model(Lattice & l, int sys):lat(l) {set_lattice(l); set_system_size(sys);};
 
 //    void set_spin_configuration()
 };

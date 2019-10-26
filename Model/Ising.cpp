@@ -9,14 +9,14 @@
 double Ising::energy(){
     double tot_eng(0.0);
     double J(1.0);
-    std::cout << "tot_eng: " << tot_eng << std::endl;
-    std::cout << "J: " << J << std::endl;
+
     for(auto &m: get_lattice().get_lattice()) {
         tot_eng += -J * ((m.get_spin()).dot((m.get_neighbors()[0])->get_spin()));
         tot_eng += -J * ((m.get_spin()).dot((m.get_neighbors()[1])->get_spin()));
     }
+
     return tot_eng;
-};
+}
 
 double Ising::energy_change(int ind, Site & lattice_s, Spin & old_s, Spin & new_s){
     double tot_eng = 0.0;
@@ -28,11 +28,11 @@ double Ising::energy_change(int ind, Site & lattice_s, Spin & old_s, Spin & new_
         tot_eng += -J * spin_difference.dot(m->get_spin());
 
     return tot_eng;
-};
+}
 
 Spin Ising::new_spin(std::mt19937 & a, std::uniform_int_distribution<int> & b){
     return {0.0, 0.0, 2.0*b(a) - 1.0};
-};
+}
 
 void Ising::update_spin_configuration(int ind, Spin & n_spin) {
     get_lattice().get_lattice()[ind].set_spin(n_spin);
@@ -54,7 +54,7 @@ std::stringstream Ising::save_spin_configuration(int spin_config_number){
 //           << (spin_config)((system_size) - 1, 2) << "}]}";
 
     return output;
-};
+}
 
 void Ising::create_ferromagnetic_spin_configuration() {
     for (auto &m: get_lattice().get_lattice()) {
