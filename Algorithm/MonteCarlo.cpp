@@ -49,7 +49,7 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 
     for (int i = 0; i < nitr; i++) {
         int random_index(dist(mt));
-        Site lattice_site(model_ptr->get_lattice()->get_lattice()[random_index]);
+        Site lattice_site(model_ptr->get_lattice().get_lattice()[random_index]);
         Spin old_spin_vec(lattice_site.get_spin());
         Spin new_spin_vec(0.0, 0.0, -old_spin_vec.get_z());
 
@@ -60,7 +60,7 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 //        if (0 >= change_eng) {
             model_ptr->update_spin_configuration(random_index, new_spin_vec);
             add_to_energy_list(change_eng);
-            add_to_magnetization_list(model_ptr->get_lattice()->calculate_magnetization());
+            add_to_magnetization_list(model_ptr->get_lattice().calculate_magnetization());
             accepted_counter++;
 //            acceptance_list.emplace_back(static_cast<double> (accepted_counter)/(i + 1));
 //		  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());

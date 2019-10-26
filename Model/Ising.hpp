@@ -20,6 +20,6 @@ public:
 
     std::stringstream save_spin_configuration(int spin_config_number) override;
 
-    Ising(Triangular & sq_lat, int sys_size):Model(sq_lat, sys_size){set_lattice(sq_lat);
+    Ising(Lattice & sq_lat, int sys_size):Model(sq_lat, sys_size){set_lattice(sq_lat);
     set_system_size(sys_size);};
 };

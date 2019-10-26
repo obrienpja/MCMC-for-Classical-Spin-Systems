@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
 //    std::cout << "Enter number of unit cells in the x-direction: " <<std::endl;
 //    std::cin >> n_x_in;
 
-    Triangular a(n_x_in, n_y_in);
+    Square a(n_x_in, n_y_in);
     std::cout << "Lattice vector component: " << a.get_a1()[0] << std::endl;
 
     std::random_device rd;

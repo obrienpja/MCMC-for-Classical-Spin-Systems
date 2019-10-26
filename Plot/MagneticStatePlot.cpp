@@ -22,10 +22,10 @@
 void demo_basic(std::unique_ptr<Model> & model_ptr) {
     Gnuplot gp;
 
-    int nx = model_ptr->get_lattice()->get_nx();
-    int ny = model_ptr->get_lattice()->get_ny();
-    vec3 a1 = model_ptr->get_lattice()->get_a1();
-    vec3 a2 = model_ptr->get_lattice()->get_a2();
+    int nx = model_ptr->get_lattice().get_nx();
+    int ny = model_ptr->get_lattice().get_ny();
+    vec3 a1 = model_ptr->get_lattice().get_a1();
+    vec3 a2 = model_ptr->get_lattice().get_a2();
 //    vec3 xrange =
 
     for(int i = 0; i < ny; i++) {
