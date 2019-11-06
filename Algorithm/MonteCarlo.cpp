@@ -24,7 +24,7 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 
     std::random_device rd2;
     std::mt19937 mt2(rd2());
-    std::uniform_int_distribution<int> dist2(0, 1);
+    std::uniform_real_distribution<double> dist2(0.0, 1.0);
 
 //    std::ofstream output;
 //    output.open("output.json");
@@ -54,7 +54,9 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
         double change_eng(model_ptr->energy_change(random_index, lattice_site, old_spin_vec, new_spin_vec));
         double rand_num(dist2(mt2));
 
-        if (std::log(rand_num) < -change_eng/temp) {
+        double log_num = std::log(rand_num);
+
+        if (log_num < -change_eng/temp) {
 //        if (0 >= change_eng) {
             model_ptr->update_spin_configuration(random_index, new_spin_vec);
             add_to_energy_list(change_eng);

@@ -10,11 +10,11 @@ public:
     std::string directoryString;
     std::string fullDirectoryString;
     Output(int n_x, int n_y, std::string modelString) {
-        directoryString = std::to_string(n_x) + "x" + std::to_string(n_x) + "_" + modelString;
+        directoryString = std::to_string(n_x) + "x" + std::to_string(n_y) + "_" + modelString;
     }
 
     void createOutputDirectory() {
-        fullDirectoryString = "/home/solidangle/" + directoryString;
+        fullDirectoryString = "/home/solidangle/MCSM Output/" + directoryString;
 
         boost::filesystem::path dir(fullDirectoryString);
         if(boost::filesystem::create_directory(dir)) {
