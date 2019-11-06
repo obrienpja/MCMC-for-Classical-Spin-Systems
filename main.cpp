@@ -2,7 +2,7 @@
 #include <cmath>
 #include <memory>
 #include <random>
-#include <bits/unique_ptr.h>
+#include <memory.h>
 #include <armadillo>
 
 //#include "Model/Heisenberg.hpp"

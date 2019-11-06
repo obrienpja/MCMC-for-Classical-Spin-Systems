@@ -14,7 +14,7 @@ public:
     }
 
     void createOutputDirectory() {
-        fullDirectoryString = "/home/solidangle/" + directoryString;
+        fullDirectoryString = "/tmp/" + directoryString;
 
         boost::filesystem::path dir(fullDirectoryString);
         if(boost::filesystem::create_directory(dir)) {
