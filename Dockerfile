@@ -1,10 +1,11 @@
 FROM ubuntu:18.10
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y g++ git cmake nlohmann-json-dev libarmadillo-dev
-
-COPY . /usr/local
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y g++ git cmake nlohmann-json-dev libarmadillo-dev libboost-all-dev gnuplot
 
 WORKDIR /usr/local/
 
-RUN cmake . && make
+RUN apt install git -y
+RUN git clone https://github.com/dstahlke/gnuplot-iostream.git /gnuplot-iostream
+RUN cd /gnuplot-iostream && make
 
-CMD ./MCSM ## docker build -t mcsm . && docker run mcsm
+CMD ["sleep", "infinity"]
+# docker stop mcsm | true && docker build -t mcsm . && docker run --rm -v $PWD:/usr/local/ --name mcsm -d mcsm && docker exec -it mcsm bash
