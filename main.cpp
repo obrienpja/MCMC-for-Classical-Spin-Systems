@@ -22,8 +22,8 @@ int main(int argc, char *argv[]) {
     std::cout << "Simulation software" << std::endl << std::endl;
     std::cout << "-----------------------------------------------------" << std::endl << std::endl;
 
-    int n_x_in = std::atoi(argv[1]);
-    int n_y_in = std::atoi(argv[2]);
+    int n_x_in = 4;
+    int n_y_in = 4;
 
 //    std::cout << "Enter number of unit cells in the x-direction: " <<std::endl;
 //    std::cin >> n_x_in;
