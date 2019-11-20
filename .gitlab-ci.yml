@@ -5,14 +5,17 @@ image: ubuntu:14.04
 # Define commands that run before each job's script
 before_script:
   - apt-get update
-  - apt-get install -y gcc g++
+  - apt-get install -y gcc g++ gnuplot libgnuplot-iostream-dev
 
 # Try to compile our sample hello world app
 compile:
   script:
   # Compile our app
-  - g++ hellworld.cpp -o helloworld
+  - cd cmake-build-debug
+  - cmake -DCMAKE_BUILD_TYPE=Debug -j8  ..
+  - make -j8
+  - make install -j8
   # Save the compiled output from the above for downloading via GitLab and in Gitlab 8.6 to use in future build steps
   artifacts:
     paths:
-    - helloworld
+    - MCSM
