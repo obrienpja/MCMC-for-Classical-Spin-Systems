@@ -2,10 +2,11 @@
 // Created by solidangle on 10/25/18.
 //
 
+#include <bits/unique_ptr.h>
 #include "Model.hpp"
 #include "../Lattice/Triangular.hpp"
 
-class Ising : public Model {
+class Ising : public Model{
 public:
 
     double energy() override;

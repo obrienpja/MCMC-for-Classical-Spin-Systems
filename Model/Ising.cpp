@@ -8,7 +8,7 @@
 
 double Ising::energy(){
     double tot_eng(0.0);
-    double J(1.0);
+    double J(-1.0);
 
     for(auto &m: get_lattice().get_lattice()) {
         tot_eng += -J * ((m.get_spin()).dot((m.get_neighbors()[0])->get_spin()));
@@ -20,7 +20,7 @@ double Ising::energy(){
 
 double Ising::energy_change(int ind, Site & lattice_s, Spin & old_s, Spin & new_s){
     double tot_eng = 0.0;
-    double J = 1.0;
+    double J = -1.0;
 
     Spin spin_difference(new_s - old_s);
 
