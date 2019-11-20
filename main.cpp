@@ -17,13 +17,13 @@
 
 using namespace arma;
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
     std::cout << "Phys-sym v. 0.0" << std::endl;
     std::cout << "Simulation software" << std::endl << std::endl;
     std::cout << "-----------------------------------------------------" << std::endl << std::endl;
 
-    int n_x_in = 20;
-    int n_y_in = 20;
+    int n_x_in = std::atoi(argv[1]);
+    int n_y_in = std::atoi(argv[2]);
 
 //    std::cout << "Enter number of unit cells in the x-direction: " <<std::endl;
 //    std::cin >> n_x_in;
@@ -50,9 +50,9 @@ int main(int argc, char **argv) {
 
     std::vector<double> accepted_list;
     std::vector<double> acceptance_list;
-    double min_simulation_temperature = 0.05;
-    double max_simulation_temperature = 1.00;
-    int number_of_temperature_steps = 1;
+    double min_simulation_temperature = 0.000005;
+    double max_simulation_temperature = 2.00;
+    int number_of_temperature_steps = 41;
 
     for(int i = 0; i < number_of_temperature_steps + 1; i++)
     {
@@ -77,8 +77,6 @@ int main(int argc, char **argv) {
     (out.fullDirectoryString + "/average_energy.png"), max_simulation_temperature);
 
     demo_basic(is, (out.fullDirectoryString + "/spin_state.png"));
-
-
 
     return 0;
 }
