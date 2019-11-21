@@ -15,7 +15,8 @@ compile:
   - cd cmake-build-debug
   - cmake -DCMAKE_BUILD_TYPE=Debug -j8  ..
   - make -j8
+  - cd ..
   # Save the compiled output from the above for downloading via GitLab and in Gitlab 8.6 to use in future build steps
   artifacts:
     paths:
-    - MCSM
+    - cmake-build-debug/MCSM
