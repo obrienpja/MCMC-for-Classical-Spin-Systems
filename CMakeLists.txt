@@ -26,4 +26,8 @@ add_executable(
 #        Plot/AverageEnergyPlot.cpp
 )
 
+add_executable(
+        unit_tests test.cpp
+)
+
 target_link_libraries(MCSM armadillo util boost_iostreams boost_system boost_filesystem)
