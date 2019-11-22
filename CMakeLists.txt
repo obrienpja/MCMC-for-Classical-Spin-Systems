@@ -3,7 +3,7 @@ project(MCSM)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_library(MCSM libarmadillo)
+find_library(MCSM libarmadillo gtest)
 
 include_directories(/gnuplot-iostream)
 
