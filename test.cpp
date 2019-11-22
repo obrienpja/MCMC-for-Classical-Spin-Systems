@@ -4,6 +4,6 @@
 
 #include "gtest/gtest.h"
 
-TEST(BasicTest){
+TEST(BasicTest, BasicTest){
     EXPECT_EQ(1, 1);
 }
