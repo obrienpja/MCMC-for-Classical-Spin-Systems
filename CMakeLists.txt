@@ -3,10 +3,10 @@ project(MCSM)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_library(MCSM libarmadillo gtest)
+find_library(MCSM libarmadillo)
+find_package(GTest REQUIRED) # Find the google testing framework on your system
 
 include_directories(/gnuplot-iostream)
-include(GoogleTest)
 
 add_executable(
         MCSM
@@ -30,6 +30,6 @@ add_executable(
 add_executable(
         unit_tests test.cpp
 )
-gtest_add_tests(TARGET unit_tests)
 
 target_link_libraries(MCSM armadillo util boost_iostreams boost_system boost_filesystem)
+target_link_libraries(unit_tests ${GTEST_LIBRARIES} pthread)

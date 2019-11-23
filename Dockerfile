@@ -1,5 +1,5 @@
 FROM ubuntu:18.10
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y g++ git cmake nlohmann-json-dev libarmadillo-dev libboost-all-dev gnuplot
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y g++ git cmake nlohmann-json-dev libarmadillo-dev libboost-all-dev gnuplot libgtest-dev
 
 WORKDIR /usr/local/
 
