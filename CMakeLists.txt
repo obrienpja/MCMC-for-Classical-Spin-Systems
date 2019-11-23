@@ -30,6 +30,6 @@ add_executable(
 add_executable(
         unit_tests test.cpp
 )
+gtest_add_tests(TARGET unit_tests)
 
 target_link_libraries(MCSM armadillo util boost_iostreams boost_system boost_filesystem)
-target_link_libraries(unit_tests gtest)
