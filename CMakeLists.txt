@@ -4,7 +4,8 @@ project(MCSM)
 set(CMAKE_CXX_STANDARD 14)
 
 find_library(MCSM libarmadillo)
-find_package(GTest REQUIRED) # Find the google testing framework on your system
+include(GoogleTest)
+#find_package(GTest REQUIRED) # Find the google testing framework on your system
 
 include_directories(/gnuplot-iostream)
 
