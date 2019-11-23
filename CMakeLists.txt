@@ -32,3 +32,4 @@ add_executable(
 )
 
 target_link_libraries(MCSM armadillo util boost_iostreams boost_system boost_filesystem)
+target_link_libraries(unit_tests gtest)
