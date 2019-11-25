@@ -7,6 +7,11 @@ before_script:
   - apt-get update
   - apt-get install -y g++ gnuplot libgnuplot-iostream-dev cmake libarmadillo-dev nlohmann-json-dev libgtest-dev
 
+stages:
+  - compile
+  - test
+  - deploy
+
 # Try to compile our sample hello world app
 compile:
   script:
