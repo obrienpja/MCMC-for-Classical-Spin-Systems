@@ -25,12 +25,13 @@ compile:
 test:
   stage: test
   script:
+    - cd cmake-build-debug
     - ./unit_tests
 
 deploy:
   stage: deploy
   script:
-    - cd ..
+    - ls
   # Save the compiled output from the above for downloading via GitLab and in Gitlab 8.6 to use in future build steps
   artifacts:
     paths:
