@@ -14,6 +14,7 @@ stages:
 
 # Try to compile our sample hello world app
 compile:
+  stage: compile
   script:
   # Compile our app
     - mkdir cmake-build-debug
@@ -22,10 +23,12 @@ compile:
     - make -j8
 
 test:
+  stage: test
   script:
     - ./unit_tests
 
 deploy:
+  stage: deploy
   script:
     - cd ..
   # Save the compiled output from the above for downloading via GitLab and in Gitlab 8.6 to use in future build steps
