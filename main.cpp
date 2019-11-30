@@ -4,79 +4,39 @@
 #include <random>
 #include <memory.h>
 #include <armadillo>
-
-//#include "Model/Heisenberg.hpp"
-#include "Algorithm/MonteCarlo.hpp"
-#include "Lattice/Square.hpp"
-#include "Lattice/Triangular.hpp"
-#include "Lattice/Lattice.hpp"
-#include "Model/Ising.hpp"
-#include "Plot/MagneticStatePlot.cpp"
-#include "Plot/AverageEnergyPlot.cpp"
-#include "Utilities/Output.hpp"
+#include <QApplication>
+#include "ui/mdi.h"
 
 using namespace arma;
 
-int main(int argc, char *argv[]) {
-    std::cout << "Phys-sym v. 0.0" << std::endl;
-    std::cout << "Simulation software" << std::endl << std::endl;
-    std::cout << "-----------------------------------------------------" << std::endl << std::endl;
+int main(int argc, char **argv) {
+	QApplication app(argc, argv);
 
-    int n_x_in = 4;
-    int n_y_in = 4;
+	app.setStyleSheet(R"V0G0N(
+    QPushButton
+		{
+            border: 1px solid gray;
+			background-color:#d4d0c8;
+		}
 
-//    std::cout << "Enter number of unit cells in the x-direction: " <<std::endl;
-//    std::cin >> n_x_in;
+QPushButton:hover
+		{
+            border: 1px solid gray;
+			background-color:#B9B4A8;
+		}
 
-    Square a(n_x_in, n_y_in);
-    std::cout << "Lattice vector component: " << a.get_a1()[0] << std::endl;
+QPushButton:pressed
+		{
+            border-top: 2px solid black;
+            border-left: 2px solid black;
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+			background-color:#8C887F;
+		}
 
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(0, 1);
-
-    std::unique_ptr<Model> is(new Ising(a, n_x_in * n_y_in));
-
-    is -> create_random_initial_spin_configuration(mt, dist);
-    is -> get_lattice().set_neighbors();
-
-    std::cout << "Generating Monte Carlo algorithm..." << std::endl;
-    std::unique_ptr<Algorithm> alg(new MonteCarlo);
-
-    const int n_itr(1000000);
-
-    std::vector<double> energy_list;
-    std::vector<double> temperatures_list;
-
-    std::vector<double> accepted_list;
-    std::vector<double> acceptance_list;
-    double min_simulation_temperature = 0.000005;
-    double max_simulation_temperature = 2.00;
-    int number_of_temperature_steps = 41;
-
-    for(int i = 0; i < number_of_temperature_steps + 1; i++)
-    {
-        temperatures_list.emplace_back(max_simulation_temperature - (max_simulation_temperature - min_simulation_temperature) * i / number_of_temperature_steps);
-    }
-
-    for (auto &temperature: temperatures_list) {
-        alg->simulate(n_itr, is, temperature, energy_list);
-    }
-
-    std::cout << "The average energy list is: " << std::endl;
-
-    for(auto m:energy_list)
-        std::cout << m << std::endl;
-
-    Output out(n_x_in, n_y_in, "Ising");
-    out.createOutputDirectory();
-
-    std::cout << (out.fullDirectoryString + "/average_energy.png") << std::endl;
-
-    plot_average_energy(temperatures_list, energy_list, \
-    (out.fullDirectoryString + "/average_energy.png"), max_simulation_temperature);
-
-    demo_basic(is, (out.fullDirectoryString + "/spin_state.png"));
-
-    return 0;
+)V0G0N");
+	
+	QWidget *widget = new MDI;
+	widget->show();
+	return app.exec();
 }
