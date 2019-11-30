@@ -7,7 +7,7 @@ build:
   stage: build
   script:
     - docker build -t mcsm .
-    - docker run --rm -v $PWD:/root/ --entrypoint /root/entrypoint.sh
+    - docker run --rm -v $PWD:/root/ --entrypoint bash mcsm /root/entrypoint.sh
   artifacts:
     paths:
       - MCSM_linux
