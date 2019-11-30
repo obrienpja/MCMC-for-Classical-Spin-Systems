@@ -7,5 +7,5 @@ ls
 pwd
 mkdir build
 cd build
-cmake ..
+cmake .. -DBoost_NO_BOOST_CMAKE=TRUE
 make -j 8
