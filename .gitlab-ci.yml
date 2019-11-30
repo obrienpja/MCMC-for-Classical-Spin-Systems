@@ -1,41 +1,22 @@
-# Specify the docker image to use (only used if using docker runners)
-# See: http://doc.gitlab.com/ee/ci/docker/using_docker_images.html
-image: ubuntu:18.10
+image: docker:latest
 
-# Define commands that run before each job's script
-before_script:
-  - apt-get update
-  - apt-get install -y g++ gnuplot libgnuplot-iostream-dev cmake libarmadillo-dev nlohmann-json-dev libgtest-dev
+services:
+  - docker:dind
 
-stages:
-  - compile
-  - test
-  - deploy
-
-# Try to compile our sample hello world app
-compile:
-  stage: compile
+build:
+  stage: build
   script:
-  # Compile our app
-    - mkdir cmake-build-debug
-    - cd cmake-build-debug
-    - cmake -DCMAKE_BUILD_TYPE=Debug -j8  ..
-    - make -j8
-    - pwd
-    - ls
+    - docker build -t mcsm .
+    - docker run --rm -v $PWD:/root/ --entrypoint bash mcsm /root/entrypoint.sh
+  artifacts:
+    paths:
+      - MCSM_linux
+      - unit_tests
 
 test:
   stage: test
+  dependencies:
+    - build
   script:
-    - pwd
-    - ls
-
-deploy:
-  stage: deploy
-  script:
-    - pwd
-    - ls
-  # Save the compiled output from the above for downloading via GitLab and in Gitlab 8.6 to use in future build steps
-  artifacts:
-    paths:
-    - cmake-build-debug/MCSM
+    - chmod +x unit_tests
+    - docker run --rm -v $PWD:/root/ --entrypoint /root/unit_tests ubuntu:18.10
