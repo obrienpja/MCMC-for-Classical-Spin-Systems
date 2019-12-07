@@ -19,6 +19,7 @@ test:
     - build
   script:
     - chmod +x unit_tests
+    - ls -la
     - ./unit_tests --gtest_output="xml:report.xml"
-    - ls
+    - ls -la
     - docker run --rm -v $PWD:/root/ --entrypoint /root/unit_tests ubuntu:18.10
