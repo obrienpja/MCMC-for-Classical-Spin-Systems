@@ -2,10 +2,10 @@ image: docker:latest
 
 services:
   - docker:dind
-
-default:
-  before_script:
-    - sudo rm -rf build/
+#
+#default:
+#  before_script:
+#    - sudo rm -rf build/
 
 build:
   stage: build
