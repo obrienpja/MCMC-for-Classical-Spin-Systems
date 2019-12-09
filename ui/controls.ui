@@ -35,7 +35,7 @@
     <widget class="QLineEdit" name="n_x_in_txt"/>
    </item>
    <item row="2" column="0">
-    <widget class="QLabel" name="n_x_in_label_2">
+    <widget class="QLabel" name="n_y_in_label">
      <property name="text">
       <string>n_y_in</string>
      </property>
