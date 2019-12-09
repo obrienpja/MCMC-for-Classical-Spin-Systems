@@ -6,9 +6,8 @@ services:
 build:
   stage: build
   script:
-    - sudo rm -rf build/
     - docker build -t mcsm .
-    - docker run --rm -v $PWD:/root/ --entrypoint bash mcsm /root/entrypoint.sh
+    - docker run --rm --user=gitlab-runner -v $PWD:/root/ --entrypoint bash mcsm /root/entrypoint.sh
   artifacts:
     paths:
       - MCSM_linux
@@ -19,10 +18,9 @@ test:
   dependencies:
     - build
   script:
-    - sudo rm -rf build/
     - chmod +x unit_tests
     - ls -la
     - pwd
     - /root/unit_tests --gtest_output="xml:report.xml"
     - ls -la
-    - docker run --rm -v $PWD:/root/ --entrypoint /root/unit_tests ubuntu:18.10
+    - docker run --rm --user=gitlab-runner -v $PWD:/root/ --entrypoint /root/unit_tests ubuntu:18.10
