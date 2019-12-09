@@ -13,6 +13,7 @@ set(UIS
         ui/mdi.ui
         ui/controls.ui
         ui/logs.ui
+        ui/chart.ui
         )
 
 set(RESOURCES
@@ -34,6 +35,8 @@ find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(BOOST_VERSION_REQUIRED "1.65.1")
 FIND_PACKAGE(Boost REQUIRED COMPONENTS system filesystem iostreams)
+set(Boost_USE_STATIC_LIBS   ON)
+
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 QT5_WRAP_UI(UI_HEADERS ${UIS})
 QT5_ADD_RESOURCES(RES_SOURCES ${RESOURCES})
@@ -67,11 +70,15 @@ add_executable(
         ui/controls.cpp
         ui/logs.h
         ui/logs.cpp
+        ui/chart.h
+        ui/chart.cpp
         #        Plot/MagneticStatePlot.cpp
         #        Plot/AverageEnergyPlot.cpp
 )
 
 target_link_libraries(MCSM ${ARMADILLO_LIBRARIES} util ${Boost_LIBRARIES} Qt5::Widgets)
+
+#target_compile_options(MCSM PRIVATE -Wall -Wextra -pedantic -Werror)
 
 string(TOLOWER ${CMAKE_SYSTEM_NAME} SYSTEM_NAME)
 
