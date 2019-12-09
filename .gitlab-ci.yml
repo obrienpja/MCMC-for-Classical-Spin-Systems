@@ -3,10 +3,13 @@ image: docker:latest
 services:
   - docker:dind
 
+default:
+  after_script:
+    - sudo rm -rf build/
+
 build:
   stage: build
   script:
-    - sudo rm -rf build/
     - docker build -t mcsm .
     - docker run --rm -v $PWD:/root/ --entrypoint bash mcsm /root/entrypoint.sh
   artifacts:
@@ -19,7 +22,6 @@ test:
   dependencies:
     - build
   script:
-    - sudo rm -rf build/
     - chmod +x unit_tests
     - ls -la
     - pwd
