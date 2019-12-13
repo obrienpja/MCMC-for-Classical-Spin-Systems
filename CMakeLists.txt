@@ -30,7 +30,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets Charts REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(BOOST_VERSION_REQUIRED "1.65.1")
@@ -76,7 +76,7 @@ add_executable(
         #        Plot/AverageEnergyPlot.cpp
 )
 
-target_link_libraries(MCSM ${ARMADILLO_LIBRARIES} util ${Boost_LIBRARIES} Qt5::Widgets)
+target_link_libraries(MCSM ${ARMADILLO_LIBRARIES} util ${Boost_LIBRARIES} Qt5::Widgets Qt5::Charts)
 
 #target_compile_options(MCSM PRIVATE -Wall -Wextra -pedantic -Werror)
 
