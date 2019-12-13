@@ -5,4 +5,5 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y g++ git cmake nl
 RUN git clone https://github.com/dstahlke/gnuplot-iostream.git /usr/local/include/gnuplot-iostream
 RUN cd /usr/local/include/gnuplot-iostream && make
 
+RUN apt install -y libqt5charts5 libqt5charts5-dev
 # docker stop mcsm | true && docker build -t mcsm . && docker run --rm -v $PWD:/root/ --name mcsm --entrypoint sleep -d mcsm infinity && docker exec -it mcsm bash
