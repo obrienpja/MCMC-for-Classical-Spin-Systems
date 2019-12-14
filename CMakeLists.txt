@@ -76,7 +76,7 @@ add_executable(
         #        Plot/AverageEnergyPlot.cpp
 )
 
-target_link_libraries(MCSM ${ARMADILLO_LIBRARIES} util ${Boost_LIBRARIES} Qt5::Widgets)
+target_link_libraries(MCSM ${ARMADILLO_LIBRARIES} util ${Boost_LIBRARIES} Qt5::Widgets -static)
 
 #target_compile_options(MCSM PRIVATE -Wall -Wextra -pedantic -Werror)
 
