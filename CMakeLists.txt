@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_library(MCSM libarmadillo REQUIRED)
 include(GoogleTest REQUIRED)
-find_package(GTest REQUIRED)
+#find_package(GTest REQUIRED)
 set(GTEST_OUTPUT, "xml:XML_Report.xml")
 
 project(MCSM LANGUAGES CXX)
@@ -20,7 +20,7 @@ set(RESOURCES
         resources.qrc
         )
 
-#set(AUTOGEN_BUILD_DIR "${CMAKE_SOURCE_DIR}/ui")
+set(AUTOGEN_BUILD_DIR "${CMAKE_SOURCE_DIR}/ui")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -35,7 +35,7 @@ find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(BOOST_VERSION_REQUIRED "1.65.1")
 FIND_PACKAGE(Boost REQUIRED COMPONENTS system filesystem iostreams)
-set(Boost_USE_STATIC_LIBS   ON)
+#set(Boost_USE_STATIC_LIBS   ON)
 
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 QT5_WRAP_UI(UI_HEADERS ${UIS})
@@ -76,8 +76,9 @@ add_executable(
         #        Plot/AverageEnergyPlot.cpp
 )
 
-target_link_libraries(MCSM ${ARMADILLO_LIBRARIES} util ${Boost_LIBRARIES} Qt5::Widgets -static)
-
+target_link_libraries(MCSM ${ARMADILLO_LIBRARIES} util)
+target_link_libraries(MCSM ${Boost_LIBRARIES} Qt5::Widgets)
+#${Boost_LIBRARIES}
 #target_compile_options(MCSM PRIVATE -Wall -Wextra -pedantic -Werror)
 
 string(TOLOWER ${CMAKE_SYSTEM_NAME} SYSTEM_NAME)

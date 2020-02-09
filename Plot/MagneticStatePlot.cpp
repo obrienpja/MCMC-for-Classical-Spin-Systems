@@ -11,7 +11,7 @@
 #include <boost/tuple/tuple.hpp>
 #include <boost/foreach.hpp>
 
-#include <gnuplot-iostream/gnuplot-iostream.h>
+#include <gnuplot-iostream.h>
 #include "../Model/Model.hpp"
 
 #ifndef M_PI

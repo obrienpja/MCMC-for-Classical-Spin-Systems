@@ -11,7 +11,7 @@
 #include <boost/tuple/tuple.hpp>
 #include <boost/foreach.hpp>
 
-#include <gnuplot-iostream/gnuplot-iostream.h>
+#include <gnuplot-iostream.h>
 #include "../Model/Model.hpp"
 
 #ifndef M_PI
@@ -28,7 +28,7 @@ void plot_average_energy(std::vector<double> temp_list, std::vector<double> aver
         pts_A.emplace_back(boost::make_tuple(temp_list[i], average_energy_list[i]));
 
     gp << "set xr [0:" << std::to_string(max_temp) << "]\n";
-    gp << "set yr [-2:2]\n";
+    gp << "set yr [-4:2]\n";
     gp << "set term png size 1000, 1000\n";
     gp << "set output '" << output_file << "'\n";
 
