@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_library(MCSM libarmadillo REQUIRED)
 include(GoogleTest REQUIRED)
-#find_package(GTest REQUIRED)
+find_package(GTest REQUIRED)
 set(GTEST_OUTPUT, "xml:XML_Report.xml")
 
 project(MCSM LANGUAGES CXX)
