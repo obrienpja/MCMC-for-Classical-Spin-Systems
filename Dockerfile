@@ -1,4 +1,4 @@
-FROM ubuntu:18.10
+FROM ubuntu:18.04
 
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y g++ git cmake nlohmann-json-dev libarmadillo-dev libboost-all-dev gnuplot qt5-default libgtest-dev qtbase5-dev qtdeclarative5-dev
 
