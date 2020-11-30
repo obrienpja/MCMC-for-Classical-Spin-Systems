@@ -27,4 +27,5 @@ test:
     - pwd
 #    - /root/unit_tests --gtest_output="xml:report.xml"
     - ls -la
+    - docker build -t mcsm .
     - docker run --rm -v $PWD:/root/ --entrypoint /root/unit_tests mcsm gtest_output="xml:report.xml"
